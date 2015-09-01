@@ -1185,6 +1185,11 @@
     "MaximumLumber" "5" // Base max lumber
     "LumberPerChop" "1"
     "ConsumesFood"  "5"
+
+    "TechModifiers"
+    {
+        "1" "research_improved_worker_motivation"
+    }
   }
 
   //================================================================================= 

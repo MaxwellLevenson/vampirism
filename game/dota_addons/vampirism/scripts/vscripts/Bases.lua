@@ -33,7 +33,7 @@ function EnterBase( keys )
   else
 
     -- Check the unit is a building
-    if unit:HasAbility("is_a_building") then
+    if unit:HasAbility("is_a_building") and unit:GetUnitName() ~= "massive_grave" then
 
 
       -- Check the unit is allowed to be built in this base

@@ -161,38 +161,6 @@ function Rifles(keys)
   end
 end
 
-function ImprovedWorkerMotivation(keys)
-  local caster = keys.caster
-  local ability = keys.ability
-  local pID = caster:GetMainControllingPlayer()
-  TechTree:AddTechAbility(pID, ability:GetAbilityName())
-  
-  -- Find all units with "MaximumLumber" not nil, these are all the harvesters
-  for key, value in pairs(UNIT_KV[pID]) do
-    if UNIT_KV[pID][key].MaximumLumber ~= nil then
-      models = Entities:FindAllByModel(UNIT_KV[pID][key].Model)
-
-      -- Increase the health of all the players harvesters
-      for i = 1,table.getn(models) do
-        local worker = models[i]
-        if worker:GetMainControllingPlayer() == pID then
-          worker:SetMaxHealth(worker:GetMaxHealth() + 300)
-          worker:SetHealth(worker:GetHealth() + 300)
-        end
-      end
-
-      -- Also increase the hp on any future units created
-      UNIT_KV[pID][key].StatusHealth = UNIT_KV[pID][key].StatusHealth + 300
-    end
-  end
-
-  Notifications:Bottom(pID, {text = "Researched: Improved Worker Motivation", duration = 5, nil, style = {color="yellow", ["font-size"]="24px"}})
-
-  if ABILITY_HOLDERS[caster:GetUnitName()] ~= nil then
-    caster:RemoveAbility(ability:GetAbilityName())
-  end
-end
-
 function GemQuality(keys)
   local caster = keys.caster
   local pID = caster:GetMainControllingPlayer()
@@ -591,6 +559,28 @@ function TechUpgrade( keys )
             --v:FindAbilityByName(techMod):OnUpgrade()
             v = nil
           end
+        end
+      end
+    end
+  end
+
+
+  local heroes = FindUnitsInRadius(DOTA_TEAM_GOODGUYS, Vector(0,0,0), nil, 10000, DOTA_UNIT_TARGET_TEAM_FRIENDLY, DOTA_UNIT_TARGET_HERO, 0, FIND_CLOSEST, false)
+  for k,v in pairs(heroes) do
+    local realName = nil
+    local unitName = v:GetUnitName()
+    for key,h in pairs(HERO_KV) do
+      if h['override_hero'] == unitName then realName = key end
+    end
+    -- Check it for tech modifiers.
+    if HERO_KV[realName]['TechModifiers'] ~= nil then
+      local modTable = HERO_KV[realName]['TechModifiers']
+      for i, mod in pairs(HERO_KV[realName]['TechModifiers']) do
+        if mod == abilityName and v:GetMainControllingPlayer() == playerID then
+          v:AddAbility(techMod)
+          local addedMod = v:FindAbilityByName(techMod)
+          addedMod:SetLevel(1)
+          --addedMod:OnUpgrade()
         end
       end
     end

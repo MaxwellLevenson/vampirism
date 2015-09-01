@@ -1,6 +1,6 @@
 print ('[VAMPIRISM] vampirism.lua' )
 
-VERSION_NUMBER = "0.14e"                   -- Version number sent to panorama.
+VERSION_NUMBER = "0.15"                   -- Version number sent to panorama.
 
 ENABLE_HERO_RESPAWN = false              -- Should the heroes automatically respawn on a timer or stay dead until manually respawned
 UNIVERSAL_SHOP_MODE = false              -- Should the main shop contain Secret Shop items as well as regular items
@@ -712,8 +712,11 @@ function GameMode:OnEntityKilled( keys )
       GameRules:MakeTeamLose(DOTA_TEAM_GOODGUYS)
     end
 
-    local playerEnts = Entities:FindAllByClassname("npc_dota_creature")
+    if SLAYERS[killedUnit:GetMainControllingPlayer()].handle:IsAlive() == true then
+      SLAYERS[killedUnit:GetMainControllingPlayer()].handle:Destroy()
+    end
 
+    local playerEnts = Entities:FindAllByClassname("npc_dota_creature")
 
     -- Goes to next frame to stop bugs.
     Timers:CreateTimer(.03, function ()
@@ -1339,7 +1342,6 @@ function NotifyAttack( victim, attacker )
   local attackerPID = attacker:GetMainControllingPlayer()
   local victimPos = victim:GetAbsOrigin()
 
-  print('making minimap event.')
   MinimapEvent(victim:GetTeam(), victim, victimPos.x, victimPos.y, DOTA_MINIMAP_EVENT_ENEMY_TELEPORTING, 2)
   ATTACK_NOTIFICATION_COOLDOWN = 5
 end

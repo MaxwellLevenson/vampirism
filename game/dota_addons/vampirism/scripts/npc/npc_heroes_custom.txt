@@ -1,4 +1,4 @@
-//Vampirism Heroes
+    //Vampirism Heroes
 
 "DOTAHeroes"
 {
@@ -377,6 +377,11 @@
     "LumberPerChop" "20"
     "ConsumesFood"  "20"
     "CanDropCoins"  "1"
+
+    "TechModifiers"
+    {
+        "1" "research_improved_worker_motivation"
+    }
   }
 
   //================================================================================= 
@@ -395,10 +400,6 @@
 
     "precache"
     {
-        "model"  "models/heroes/sven/sven_mask.vmdl"
-        "model"  "models/heroes/sven/sven_gauntlet.vmdl"
-        "model"  "models/heroes/sven/sven_shoulder.vmdl"
-        "model"  "models/items/sven/breath_of_tielong/breath_of_tielong.mdl"
         "particle"  "particles/units/heroes/hero_sven.vpcf"
     }
 
@@ -476,17 +477,9 @@
     "ConsumesFood"  "30"
     "AnnounceUnit"  "1"
 
-    //"Creature"
-    //{
-    //    "AttachWearables"
-    //    {
-    //        "Wearble1"  { "ItemDef"     "16" }
-    //        "Wearble2"  { "ItemDef"     "19" }
-    //        "Wearble3"  { "ItemDef"     "20" }
-    //        "Wearble4"  { "ItemDef"     "6080" }
-    //    }
-    //}
+    "TechModifiers"
+    {
+        "1" "research_improved_worker_motivation"
+    }
   }
-
-
 }

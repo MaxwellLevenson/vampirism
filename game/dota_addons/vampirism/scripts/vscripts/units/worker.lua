@@ -19,12 +19,48 @@ function Worker:Worker1(vPos, hOwner, unitName, isHero)
         ability:SetLevel(1)
       end
     end
-    local newPos = FindGoodSpaceForUnit(worker, vPos, 200, 50)
-    if newPos ~= nil then
+    local newPos = FindGoodSpaceForUnit(worker, vPos, 500, 50)
+    if newPos ~= false then
       worker:SetAbsOrigin(newPos)
+    end
+
+    local realName = nil
+    for k,v in pairs(HERO_KV) do
+      if v['override_hero'] == unitName then realName = k end
+    end
+    
+    -- Check it for tech modifiers.
+    if HERO_KV[realName]['TechModifiers'] ~= nil then
+      local modTable = HERO_KV[realName]['TechModifiers']
+      for k, v in pairs(HERO_KV[realName]['TechModifiers']) do
+        if TechTree:HasTech(pID, v) then
+          local modName =  ABILITY_KV[v]['GiveModifier']
+          worker:AddAbility(modName)
+          local addedMod = worker:FindAbilityByName(modName)
+          addedMod:SetLevel(1)
+          --addedMod:OnUpgrade()
+        end
+      end
     end
   else
     worker = CreateUnitByName(unitName, vPos + VECTOR_BUMP, true, nil, nil, hOwner:GetTeam())
+    local newPos = FindGoodSpaceForUnit(worker, vPos, 400, 50)
+    if newPos ~= nil then
+      worker:SetAbsOrigin(newPos)
+    end
+    -- Check it for tech modifiers.
+    if UNIT_KV[pID][unitName]['TechModifiers'] ~= nil then
+      local modTable = UNIT_KV[pID][unitName]['TechModifiers']
+      for k, v in pairs(UNIT_KV[pID][unitName]['TechModifiers']) do
+        if TechTree:HasTech(pID, v) then
+          local modName =  ABILITY_KV[v]['GiveModifier']
+          worker:AddAbility(modName)
+          local addedMod = worker:FindAbilityByName(modName)
+          addedMod:SetLevel(1)
+          --addedMod:OnUpgrade()
+        end
+      end
+    end
   end
   worker:SetControllableByPlayer(hOwner:GetMainControllingPlayer() , true)
 

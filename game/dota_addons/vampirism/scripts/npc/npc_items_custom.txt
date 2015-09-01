@@ -220,15 +220,31 @@
 		"ID"	"2005"
 		"BaseClass"	"item_datadriven"
     "AbilityTextureName"  "item_phase_boots"
-    "AbilityBehavior"        "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+    "AbilityBehavior"        "DOTA_ABILITY_BEHAVIOR_IMMEDIATE| DOTA_ABILITY_BEHAVIOR_NO_TARGET"
 		"ItemStackable"	"0"
 		"ItemKillable"	"1"
 		"ItemShareability"	"ITEM_FULLY_SHAREABLE"
 		"ItemPermanent"	"0"
 		"ItemInitialCharges"	"1"
     "ItemPurchasable"       "0"
-		"AbilityCooldown"   "1"
-    "GoldCost"          "100"	
+		"AbilityCooldown"   "15"
+    "AbilityManaCost"   "100"
+    "GoldCost"          "100"
+
+    "precache"
+    {
+      "particle"  "particles/units/heroes/hero_ogre_magi/ogre_magi_bloodlust_buff.vpcf"
+    }
+
+    "OnSpellStart"
+    {
+      "ApplyModifier"
+      {
+        "ModifierName"  "modifier_boots_bloodlust"
+        "Target"     "CASTER"
+        "Duration"    "8"
+      }
+    }
 
     "Modifiers"
     {
@@ -241,6 +257,20 @@
         "Properties"
         {
             "MODIFIER_PROPERTY_MOVESPEED_BONUS_CONSTANT" "100" 
+        }
+      }
+      "modifier_boots_bloodlust"
+      {
+        "Passive"       "0"
+        "IsHidden"      "0"
+      
+        "EffectName"    "particles/units/heroes/hero_ogre_magi/ogre_magi_bloodlust_buff.vpcf"
+        "EffectAttachType"  "follow_origin"
+      
+        "Properties"
+        {
+          "MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT" "98"
+          "MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE" "20" 
         }
       }
     }
@@ -1355,6 +1385,20 @@
         "Duration"    "600"
       }
     }
+
+    "Modifiers"
+    {
+      "modifier_windwalk_passive"
+      {
+        "Passive"      "1"
+        "IsHidden"      "1"
+        
+        "Properties"
+        {
+          "MODIFIER_PROPERTY_MOVESPEED_BONUS_CONSTANT" "60"
+        }
+      }
+    }
   }
 
   //================================================================================= 
@@ -1890,8 +1934,8 @@
     {
       "modifier_amulet_armor"
       {
-        "Passive"      "0"
-        "IsHidden"      "0"
+        "Passive"      "1"
+        "IsHidden"      "1"
           
         "Attributes"    "MODIFIER_ATTRIBUTE_MULTIPLE"
         "Properties"

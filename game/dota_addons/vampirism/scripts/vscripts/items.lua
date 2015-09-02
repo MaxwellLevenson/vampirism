@@ -578,11 +578,11 @@ function ShadowSight( keys )
 	local casterTeam = caster:GetTeam()
 	local target = keys.target
 
-	if not target:HasAbility('is_a_building') then
+	if target:HasAbility('is_a_building') == false then
 		if target:IsHero() and target:IsConsideredHero() then
 			target:AddNewModifier(caster, nil, 'modifier_bloodseeker_thirst_vision', {duration = 30})
 		else
-			target:AddNewModifier(caster, nil, 'modifier_bloodseeker_thirst_vision', {duration = 120})
+			target:AddNewModifier(caster, nil, ' modifier_bloodseeker_thirst_vision', {duration = 120})
 		end
 	else
 		FireGameEvent('custom_error_show', {player_ID = playerID, _error = 'Cannot target buildings!'})

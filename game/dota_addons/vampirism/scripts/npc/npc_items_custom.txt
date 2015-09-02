@@ -1667,7 +1667,8 @@
   	"ItemKillable"			"1"
   	"ItemShareability"		"ITEM_FULLY_SHAREABLE"
   	"ItemPermanent"			"0"
-  	"ItemRequiresCharges"   "0"
+  	"ItemRequiresCharges"   "1"
+    "ItemInitialCharges"    "1"
   	"SideShop"				"1"
     "ItemPurchasable"       "0"
   	"AbilityCooldown"		"0"
@@ -1676,13 +1677,13 @@
 
   	"OnSpellStart"
     {
-      "SpendCharge" {}
       "RunScript"
       {
         "ScriptFile"  "items.lua"
         "Function"    "ShadowSight"
         "Target"      "TARGET"
       }
+      "SpendCharge" {}
     }
   }
 
@@ -1700,8 +1701,9 @@
   	"ItemStackable"			"0"
   	"ItemKillable"			"1"
   	"ItemShareability"		"ITEM_FULLY_SHAREABLE"
+    "ItemInitialCharges"  "1"
   	"ItemPermanent"			"0"
-  	"ItemRequiresCharges"   "0"
+  	"ItemRequiresCharges"   "1"
     "ItemPurchasable"       "0"
     "AbilityCastRange"        "700"
     "AbilityCastPoint"        "0.3"
@@ -1719,6 +1721,7 @@
         "Function"    "CycloneWand"
         "Target"      "TARGET"
       }
+      "SpendCharge" {}
     }
   }
 

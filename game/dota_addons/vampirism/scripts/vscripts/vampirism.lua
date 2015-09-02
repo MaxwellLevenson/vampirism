@@ -301,7 +301,7 @@ function GameMode:OnGameRulesStateChange(keys)
           human:FindAbilityByName("human_blink"):SetLevel(1)
           human:FindAbilityByName("human_manaburn"):SetLevel(1)
           human:FindAbilityByName("human_repair"):SetLevel(1)
-          WOOD[i] = 10000000 --cheats, real is 50.
+          WOOD[i] = 100000 --cheats, real is 50.
           GOLD[i] = 100000 --this is how it should look on ship.
           TOTAL_FOOD[i] = 20
           CURRENT_FOOD[i] = 0
@@ -323,7 +323,7 @@ function GameMode:OnGameRulesStateChange(keys)
           if newSpace ~= false then
             vampire:SetAbsOrigin(newSpace)
           end
-          GOLD[i] = 10000000 --cheats off
+          GOLD[i] = 0 --cheats off
           WOOD[i] = 0 --cheats off
           TOTAL_FOOD[i] = 10
           CURRENT_FOOD[i] = 0

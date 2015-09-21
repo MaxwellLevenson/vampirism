@@ -9781,6 +9781,11 @@
         "Target"      "POINT"
         "MaxBlink"    "200"
       }
+      "RunScript"
+      {
+        "ScriptFile"  "items.lua"
+        "Function"    "AssassinInvis"
+      }
     }
   }
 
@@ -9824,6 +9829,28 @@
         "Properties"
         {
           "MODIFIER_PROPERTY_MANA_BONUS"  "10"
+        }
+      }
+      "modifier_assassin_invis"
+      {
+        "Passive"      "1"
+        "IsHidden"      "1"
+        "IsDebuff"      "0"
+        "OnCreated"
+        {
+          "RunScript"
+          {
+            "ScriptFile"  "items.lua"
+            "Function"    "AssassinInvis"
+          }
+        }
+        "OnAttackLanded"
+        {
+          "RunScript"
+          {
+            "ScriptFile"  "items.lua"
+            "Function"    "AssassinInvis"
+          }
         }
       }
     }

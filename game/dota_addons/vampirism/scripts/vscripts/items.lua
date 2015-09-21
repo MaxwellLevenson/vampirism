@@ -752,6 +752,20 @@ function RicochetGem( keys )
   end)
 end
 
+-- Manages invis for assassins.
+function AssassinInvis( keys )
+	local caster = keys.caster
+	local delay = keys.delay
+	if delay ~= nil then
+		Timers:CreateTimer(delay, function ()
+			caster:AddNewModifier(caster, nil, 'modifier_invisible', {})
+			return nil
+		end)
+	else
+		caster:AddNewModifier(caster, nil, 'modifier_invisible', {})
+	end
+end
+
 -- Sells the item in the first slot.
 function VampireSell( keys )
 	local caster = keys.caster

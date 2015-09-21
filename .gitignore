@@ -56,6 +56,8 @@ game/dota_addons/vampirism/tools_thumbnail_cache.bin
 game/dota_addons/vampirism/tools_asset_info.bin
 game/dota_addons/vpks/
 content/dota_addons/ui_example
+game/dota_addons/workshop_testbed
+content/dota_addons/workshop_testbed
 *.vmap_autosave
 *.vtex_c
 *.vxml_c

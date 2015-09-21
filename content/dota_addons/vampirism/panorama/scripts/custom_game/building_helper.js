@@ -145,4 +145,5 @@ function SendCancelCommand( params )
 
 (function () {
   GameEvents.Subscribe( "building_helper_enable", StartBuildingHelper);
+  GameEvents.Subscribe( "building_helper_end", EndBuildingHelper);
 })();

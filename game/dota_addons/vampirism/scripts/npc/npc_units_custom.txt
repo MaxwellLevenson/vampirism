@@ -1895,6 +1895,8 @@
     "CombatClassDefend"     "DOTA_COMBAT_CLASS_DEFEND_STRONG"
     "UnitRelationshipClass"   "DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
     "RepairTime"  "32"
+
+    "IsUnique"                    "true"
   }
 
   //================================================================================= 
@@ -3056,7 +3058,7 @@
     //-------------------------------------------------------------------------------------------------------------
     "BaseClass"                     "npc_dota_creature"
     "Model"                         "models/props_structures/dire_barracks_ranged001.vmdl"
-    "ModelScale"                    "3"
+    "ModelScale"                    "2"
     
     "ConsideredHero"                "0"
     // Abilities
